@@ -1,11 +1,21 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, FlatList} from 'react-native';
 import Task from './Task';
 
-const TaskList = () => {
+const TaskList = ({todos, handleDelete, handleUpdate}) => {
   return (
     <View>
-      <Task/>
+         <FlatList
+          data={todos}
+          renderItem={({item}) => { 
+          return (
+            <View key={item.id}>
+
+            <Task todo={item.todo} handleDelete={handleDelete} id={item.id} handleUpdate={handleUpdate}/>
+           </View>
+          )
+         }}
+        />
     </View>
   )
 }
